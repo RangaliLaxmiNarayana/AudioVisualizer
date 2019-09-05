@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_root"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@android:color/transparent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txt_rec_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="@string/rec_title"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/bitRate_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/txt_rec_title"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.6"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:text="Bit Rate: "/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_weight="0.6"
+        android:layout_marginRight="20dp"
+        android:autofillHints="Select bit rate"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/background_spinner"
+        />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:text="Sample Rate(in Hz): "/>
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_marginRight="20dp"
+            android:autofillHints="Select bit rate"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/background_spinner"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/txt_alert_information1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/bitRate_layout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:text="Min Decibles: "/>
+
+        <EditText
+            android:id="@+id/min_dbValue"
+            android:layout_width="0dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:hint="Enter DB"
+            android:ellipsize="end"
+            android:textSize="16dp"
+            android:inputType="numberSigned"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/txt_rec_title"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:text="max Decibles: "/>
+
+    <EditText
+        android:id="@+id/max_dbValue"
+        android:layout_width="0dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:hint="Enter DB"
+        android:ellipsize="end"
+        android:textSize="16dp"
+        android:inputType="numberSigned"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt_rec_title"
+        />
+    </LinearLayout>
+
+    <Button
+        android:padding="20dp"
+        android:id="@+id/txt_alert_information"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt_alert_information1"
+        android:text="Test"
+        />
+    <!--<TextView
+        android:id="@+id/txt_alert_information"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_rec_title"
+        android:layout_gravity="center"
+        android:layout_margin="10sp"
+        android:gravity="center_horizontal"
+        android:text="@string/rec_info"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />-->
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/recording_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_alert_information1"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/start_recording"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ico_mic" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <ImageView
+            android:id="@+id/stop_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_action_stop" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <ImageView
+            android:id="@+id/delete_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/delete" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <ImageView
+            android:id="@+id/browse_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/sort_list" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txt_cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recording_actions"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/rec_cancel"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+
+    <LinearLayout
+        android:id="@+id/relative"
+        android:layout_below="@+id/txt_alert_information"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Selected dB: "
+            android:textSize="20sp"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/min_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text=" to "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/max_db"
+                android:layout_width="wrap_content"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/averagedb"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Recording dB : "
+            android:textSize="20sp"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative"
+        android:padding="2dp"
+        android:background="@android:color/white" >
+
+        <com.serveroverload.recorder.customview.RecorderVisualizerView
+            android:id="@+id/visualizer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/background_dark" />
+    </FrameLayout>
+
+
+
+</RelativeLayout>
