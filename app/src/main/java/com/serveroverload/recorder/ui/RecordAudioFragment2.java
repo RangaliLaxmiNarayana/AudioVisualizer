@@ -58,7 +58,7 @@ public class RecordAudioFragment2 extends Fragment {
     private static final String AUDIO_RECORDER_FILE_EXT_WAV = ".wav";
     private static final String AUDIO_RECORDER_FOLDER = "Recordings";
     private static final String AUDIO_RECORDER_TEMP_FILE = "record_temp.raw";
-    private int RECORDER_SAMPLERATE = 44100;
+    private int RECORDER_SAMPLERATE = 48000;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
     private static final int RECORDER_CHANNELS_INT = 1;
@@ -138,7 +138,7 @@ public class RecordAudioFragment2 extends Fragment {
         staticAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         staticSpinner.setAdapter(staticAdapter);
-        int bitRateDefaultPosition = staticAdapter.getPosition("24");
+        int bitRateDefaultPosition = staticAdapter.getPosition("16");
         staticSpinner.setSelection(bitRateDefaultPosition);
 
         sampleRateSpinner1 = (Spinner) rootView.findViewById(R.id.spinner1);
@@ -148,7 +148,7 @@ public class RecordAudioFragment2 extends Fragment {
         sampleRateAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sampleRateSpinner1.setAdapter(sampleRateAdapter);
-        int sampleRateDefaultPosition = sampleRateAdapter.getPosition("41000");
+        int sampleRateDefaultPosition = sampleRateAdapter.getPosition("48000");
         sampleRateSpinner1.setSelection(sampleRateDefaultPosition);
 
         staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -932,7 +932,20 @@ public class RecordAudioFragment2 extends Fragment {
             if (isRecording) // if we are already recording
 
             {
-                byte sData[] = new byte[bufferSize];
+                if(!isSave) {
+                    byte sData[] = new byte[bufferSize];
+                    myAudioRecorder.read(sData, 0, bufferSize);
+                    amplitudes = null;
+                    amplitude = 0;
+                    if (amplitude == 0)
+                        getAmplitudeLevels(sData);
+                    // read = recorder.read(data, 0, 6144);
+                    System.out.println("======================" + amplitude);
+                    double currentDec = decibles;
+                    decibles = 20 * Math.log10(amplitude / 32767.0);
+                    if (decibles > currentDec)
+                        maxDecibles = decibles;
+                }
                 // update the VisualizeView
                 visualizerView.addAmplitude(amplitude);
 
@@ -942,7 +955,7 @@ public class RecordAudioFragment2 extends Fragment {
                 averageAmplitute = visualizerView.getAverageAmplitude();
                 maximumAmplitute = visualizerView.getMaximumAmplitude();
                 maxDecibles = 20 *Math.log10(amplitude / 32767.0);
-                averageDB.setText("Recorded dB : " + String.format(".2f", maxDecibles));
+                averageDB.setText("Recorded dB : " + String.format("%.2f", maxDecibles));
 
                 // update in 40 milliseconds
                 handler.postDelayed(this, REPEAT_INTERVAL);

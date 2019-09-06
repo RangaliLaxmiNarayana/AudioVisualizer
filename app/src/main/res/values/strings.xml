@@ -20,19 +20,19 @@
 
     <string-array name="bitrate_array">
         <item>16</item>
-        <item>18</item>
+    <!--    <item>18</item>
         <item>20</item>
         <item>22</item>
         <item>24</item>
         <item>26</item>
         <item>28</item>
         <item>30</item>
-        <item>32</item>
+        <item>32</item>-->
     </string-array>
 
     <string-array name="samplerate_array">
-        <item>44100</item>
+       <!-- <item>44100</item>-->
         <item>48000</item>
-        <item>96000</item>
+        <!--<item>96000</item>-->
     </string-array>
 </resources>
