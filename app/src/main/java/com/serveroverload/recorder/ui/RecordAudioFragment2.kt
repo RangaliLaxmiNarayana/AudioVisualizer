@@ -885,7 +885,7 @@ class RecordAudioFragment2 : Fragment() {
             var buff = bytes[i + 1].toShort()
             var buff2 = bytes[i].toShort()
 
-            buff = ((bytes[buff++.toInt()] and 0xFF.toByte()).toInt() shl 8).toShort()
+            buff = (buff++.toInt() and 0xFF shl 8).toShort()
             buff2 = (buff2 and 0xFF).toShort()
 
             val res = (buff or buff2).toShort()
